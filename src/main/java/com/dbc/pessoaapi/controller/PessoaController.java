@@ -2,6 +2,7 @@ package com.dbc.pessoaapi.controller;
 
 import com.dbc.pessoaapi.entity.Pessoa;
 import com.dbc.pessoaapi.service.PessoaService;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,13 +14,16 @@ public class PessoaController {
 
     private PessoaService pessoaService;
 
+    @Value("${user}")
+    private String usuario;
+
     public PessoaController() {
         pessoaService = new PessoaService();
     }
 
     @GetMapping("/hello")
     public String hello() {
-        return "Hello world!";
+        return usuario;
     }
 
     @PostMapping
